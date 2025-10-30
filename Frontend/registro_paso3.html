@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <title>Uber Woman - Verificación</title>
+    
+    <style>
+        /* Variables de Colores */
+        :root {
+            --color-primary: #EE3E92; 
+            --color-secondary: #993399; 
+            --color-text-light: #FFFFFF;
+            --color-bg-light: #FFFFFF; 
+            --color-input-border: #AAAAAA; 
+            --color-input-focus: #EE3E92; 
+            --color-text-dark: #333333;
+        }
+
+        /* Estilos Generales y Contenedor App */
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Arial', sans-serif; }
+        body { 
+            background-color: var(--color-primary); 
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+            min-height: 100vh; 
+        }
+        .app-container {
+            width: 100%; 
+            max-width: 400px; 
+            min-height: 100vh; 
+            background-color: var(--color-bg-light); 
+            padding: 0 30px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Título */
+        .header-registro {
+            padding-top: 60px; 
+            padding-bottom: 40px; 
+            text-align: center;
+        }
+        .title {
+            color: var(--color-secondary); 
+            font-size: 2.2em; 
+            font-weight: 700; 
+            line-height: 1.2;
+            margin-bottom: 10px;
+        }
+        .subtitle {
+            font-size: 0.9em;
+            color: #666;
+            margin-bottom: 30px;
+            font-weight: 500;
+        }
+
+        /* Icono de Verificación */
+        .verification-icon {
+            font-size: 4em;
+            color: var(--color-primary);
+            margin-bottom: 30px;
+        }
+        
+        /* Contenedores de opciones */
+        .verification-options {
+            margin-bottom: 40px;
+        }
+        .option-box {
+            border: 2px solid var(--color-input-border);
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 15px;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-align: left;
+        }
+        .option-box:hover {
+            border-color: var(--color-primary);
+            box-shadow: 0 0 5px rgba(238, 62, 146, 0.5);
+        }
+        .option-box h3 {
+            font-size: 1.1em;
+            color: var(--color-secondary);
+            margin-bottom: 5px;
+        }
+        .option-box p {
+            font-size: 0.8em;
+            color: #888;
+        }
+
+        /* Botones */
+        .button {
+            width: 100%; 
+            padding: 12px; 
+            border: none; 
+            border-radius: 3px;
+            font-size: 1em; 
+            font-weight: bold; 
+            cursor: pointer; 
+            margin-top: 10px;
+            transition: background-color 0.3s; 
+            text-transform: uppercase;
+        }
+        .primary-button { 
+            background-color: var(--color-secondary); 
+            color: var(--color-text-light); 
+        }
+        .primary-button:hover { 
+            background-color: var(--color-primary); 
+        }
+    </style>
+    </head>
+<body>
+    <div class="app-container">
+        <header class="header-registro">
+            <span class="verification-icon">👩‍⚕️</span> <h1 class="title">Verificación de Género</h1>
+            <p class="subtitle">Este paso es obligatorio para garantizar la seguridad de nuestra comunidad.</p>
+        </header>
+
+        <form action="plataforma_principal.html" method="get">
+            
+            <div class="verification-options">
+                
+                <div class="option-box">
+                    <h3>Subir Documento de Identidad</h3>
+                    <p>Necesitamos confirmar tu identidad con tu cédula o documento oficial. (El documento debe mostrar el sexo 'F')</p>
+                </div>
+                
+                <div class="option-box">
+                    <h3>Verificación Facial en Vivo</h3>
+                    <p>Toma una foto en tiempo real para verificar tu identidad y género. (Necesita acceso a la cámara)</p>
+                </div>
+                
+            </div>
+            
+            <button type="submit" class="button primary-button">CONTINUAR Y VERIFICAR</button>
+        </form>
+    </div>
+</body>
+</html>

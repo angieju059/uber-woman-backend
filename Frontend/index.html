@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <title>Uber Woman - Ingreso</title>
+    
+    <style>
+        /* Variables de Colores */
+        :root {
+            --color-primary: #EE3E92; /* Rosa/Magenta (fondo superior) */
+            --color-secondary: #993399; /* Morado/Magenta Oscuro (texto, botón) */
+            --color-text-light: #FFFFFF;
+            --color-text-dark: #333333;
+            --color-bg-light: #FFFFFF;
+            --color-input-border: #AAAAAA;
+        }
+
+        /* Estilos Generales y Reseteo */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif; 
+        }
+
+        body {
+            background-color: var(--color-primary); 
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        /* Contenedor principal (simula la pantalla del móvil) */
+        .app-container {
+            width: 100%;
+            max-width: 400px; 
+            min-height: 100vh; 
+            background-color: var(--color-primary);
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        /* Área superior del logo */
+        .header-logo {
+            padding-top: 100px; 
+            padding-bottom: 50px;
+            text-align: center;
+            color: var(--color-text-light);
+            background-color: var(--color-primary);
+        }
+
+        .logo-text {
+            font-size: 3.5em; 
+            font-weight: bold;
+            line-height: 1.0;
+        }
+
+        .slogan {
+            font-size: 1em;
+            margin-top: 20px;
+        }
+
+        /* Área del formulario (curva y fondo blanco) */
+        .login-area {
+            background-color: var(--color-bg-light); 
+            border-top-left-radius: 50px;
+            border-top-right-radius: 50px;
+            padding: 40px 30px;
+            flex-grow: 1;
+            z-index: 10;
+        }
+
+        .login-title {
+            color: var(--color-secondary);
+            font-size: 2.5em;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 5px;
+        }
+
+        .login-subtitle {
+            font-size: 0.8em;
+            color: var(--color-text-dark);
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        /* Estilos de Input */
+        .input-group {
+            margin-bottom: 20px;
+        }
+        
+        /* Estilos de los campos de texto */
+        input[type="email"], 
+        input[type="password"] {
+            width: 100%;
+            padding: 10px 15px;
+            border: 1px solid var(--color-input-border);
+            border-radius: 3px;
+            font-size: 1em;
+            outline: none;
+            background-color: #F0F0F0; /* Fondo gris claro */
+            transition: border-color 0.3s;
+        }
+
+        input:focus {
+            border-color: var(--color-secondary);
+        }
+
+        /* Botón de Ingreso */
+        .button {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 3px;
+            font-size: 1.1em;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 15px;
+            transition: background-color 0.3s;
+            text-transform: uppercase;
+        }
+
+        .primary-button {
+            background-color: var(--color-secondary);
+            color: var(--color-text-light);
+        }
+
+        .primary-button:hover {
+            background-color: var(--color-primary);
+        }
+
+        /* Enlaces inferiores */
+        .links-bottom {
+            text-align: center;
+            margin-top: 30px;
+            font-size: 0.9em;
+        }
+
+        .links-bottom a {
+            color: var(--color-secondary);
+            text-decoration: none;
+            font-weight: bold;
+            margin: 0 5px;
+            display: inline-block;
+        }
+        
+        .links-bottom a:hover {
+            text-decoration: underline;
+        }
+    </style>
+    </head>
+<body>
+    <div class="app-container">
+        
+        <header class="header-logo">
+            <h1 class="logo-text">UberWoman</h1>
+            <p class="slogan">Entre TODAS nos cuidamos</p>
+        </header>
+
+        <div class="login-area">
+            <h2 class="login-title">INGRESA</h2>
+            <p class="login-subtitle">INGRESA PARA CONTINUAR</p>
+            
+            <form onsubmit="return validarIngreso(event)">
+                
+                <div class="input-group">
+                    <input type="email" id="correo" name="correo" placeholder="Correo Electrónico"> 
+                </div>
+                
+                <div class="input-group">
+                    <input type="password" id="contrasena" name="contrasena" placeholder="Contraseña">
+                </div>
+                
+                <button type="submit" class="button primary-button">INGRESAR</button>
+            </form>
+            
+            <div class="links-bottom">
+                <a href="recuperacion_contrasena.html" class="link-forgot">Olvidé mi Contraseña</a>
+                <a href="registro.html">Regístrate</a>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        function validarIngreso(event) {
+            // Credenciales de prueba (para simular el ingreso correcto)
+            const CORREO_PRUEBA = "mujer@woman.com";
+            const CONTRASENA_PRUEBA = "segura123";
+
+            const correo = document.getElementById('correo').value;
+            const contrasena = document.getElementById('contrasena').value;
+
+            // 1. Validar que los campos no estén vacíos
+            if (correo === "" || contrasena === "") {
+                alert("⚠️ Por favor, ingresa tu correo electrónico y contraseña.");
+                event.preventDefault(); // Detiene la navegación
+                return false;
+            }
+
+            // 2. Simulación de comprobación de credenciales (backend simulado)
+            if (correo === CORREO_PRUEBA && contrasena === CONTRASENA_PRUEBA) {
+                // Si las credenciales son correctas, redirige a la plataforma
+                alert("✅ ¡Ingreso exitoso! Bienvenida a Uber Woman.");
+                window.location.href = "plataforma_principal.html";
+                event.preventDefault(); // Detiene el envío default del formulario
+                return true;
+            } else {
+                // Si las credenciales son incorrectas
+                alert("❌ Error de ingreso: Correo o Contraseña incorrectos.");
+                event.preventDefault(); // Detiene la navegación
+                return false;
+            }
+        }
+    </script>
+    </body>
+</html>

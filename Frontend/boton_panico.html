@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Uber Woman - Alerta</title>
+    <style>
+        :root {
+            --color-primary: #EE3E92;
+            --color-secondary: #993399;
+            --color-alert: #FF0000;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Arial', 'Segoe UI', sans-serif; }
+        body { background-color: var(--color-alert); display: flex; justify-content: center; align-items: center; min-height: 100vh; }
+        
+        .alert-container {
+            width: 100%; max-width: 400px; padding: 40px 20px;
+            display: flex; flex-direction: column; justify-content: center; align-items: center;
+            text-align: center; color: white;
+        }
+        .alert-icon { font-size: 8em; margin-bottom: 20px; animation: pulse 1s infinite alternate; }
+        h1 { font-size: 2.5em; margin-bottom: 10px; }
+        p { font-size: 1.2em; margin-bottom: 30px; }
+
+        @keyframes pulse {
+            from { transform: scale(1); opacity: 1; }
+            to { transform: scale(1.05); opacity: 0.9; }
+        }
+        
+        .loading-bar { width: 80%; height: 8px; background-color: rgba(255, 255, 255, 0.5); border-radius: 4px; margin-top: 20px; overflow: hidden; }
+        .progress { height: 100%; width: 0; background-color: white; animation: fill 5s linear forwards; }
+        
+        @keyframes fill {
+            from { width: 0%; }
+            to { width: 100%; }
+        }
+    </style>
+</head>
+<body>
+    <div class="alert-container">
+        <div class="alert-icon">🚨</div>
+        <h1>¡ALERTA DE PÁNICO ACTIVADA!</h1>
+        <p>Tu ubicación ha sido enviada a nuestros contactos de emergencia y a las autoridades.</p>
+        <p style="font-size: 1em;">Regresando al inicio en <span id="countdown">5</span> segundos.</p>
+        
+        <div class="loading-bar">
+            <div class="progress"></div>
+        </div>
+    </div>
+
+    <script>
+        let count = 5;
+        const countdownElement = document.getElementById('countdown');
+
+        function updateCountdown() {
+            countdownElement.textContent = count;
+            count--;
+            if (count < 0) {
+                clearInterval(interval);
+                window.location.href = 'plataforma_principal.html';
+            }
+        }
+
+        const interval = setInterval(updateCountdown, 1000);
+    </script>
+</body>
+</html>

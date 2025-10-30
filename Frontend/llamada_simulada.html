@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Llamada en Curso</title>
+    <style>
+        :root {
+            --color-primary: #EE3E92; /* Rosa Fuerte */
+            --color-secondary: #993399; /* Púrpura Intenso */
+            --color-accent-red: #D32F2F;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Arial', 'Segoe UI', sans-serif; }
+        body { 
+            background-color: var(--color-secondary); /* Fondo morado para simular la pantalla de llamada */
+            display: flex; justify-content: center; align-items: center; min-height: 100vh; 
+            color: white; 
+        }
+        .call-screen { 
+            width: 100%; max-width: 400px; height: 100vh; 
+            display: flex; flex-direction: column; justify-content: space-between; align-items: center; 
+            padding: 50px 20px; text-align: center;
+        }
+
+        .driver-info h1 { font-size: 2.5em; margin-bottom: 5px; }
+        .driver-info p { font-size: 1.2em; opacity: 0.8; }
+        .timer { font-size: 4em; font-weight: 200; margin-top: 30px; }
+
+        .action-buttons { margin-top: auto; display: flex; justify-content: center; width: 100%; }
+        .hang-up-button {
+            background-color: var(--color-accent-red); 
+            color: white; 
+            border: none;
+            padding: 20px; 
+            border-radius: 50%; 
+            width: 80px; 
+            height: 80px;
+            font-size: 2em; 
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+            transition: background-color 0.2s;
+        }
+        .hang-up-button:hover {
+            background-color: #A92323;
+        }
+    </style>
+</head>
+<body>
+    <div class="call-screen">
+        <div class="driver-info">
+            <span style="font-size: 5em; margin-bottom: 20px; display: block;">📞</span>
+            <h1 id="driverNameCall">Laura Rodríguez</h1>
+            <p>Conductora Uber Woman</p>
+        </div>
+        
+        <div class="timer" id="callTimer">00:00</div>
+
+        <div class="action-buttons">
+            <button class="hang-up-button" onclick="window.location.href='mapa_seguimiento.html'">
+                🔴
+            </button>
+        </div>
+    </div>
+    
+    <script>
+        let seconds = 0;
+        let minutes = 0;
+        let t;
+
+        function add() {
+            seconds++;
+            if (seconds >= 60) {
+                seconds = 0;
+                minutes++;
+            }
+            
+            const displayMinutes = (minutes < 10 ? "0" + minutes : minutes);
+            const displaySeconds = (seconds < 10 ? "0" + seconds : seconds);
+            document.getElementById('callTimer').textContent = displayMinutes + ":" + displaySeconds;
+            
+            timer();
+        }
+
+        function timer() {
+            t = setTimeout(add, 1000);
+        }
+
+        document.addEventListener("DOMContentLoaded", () => {
+            const driverName = localStorage.getItem('driverName') || 'Laura Rodríguez';
+            document.getElementById('driverNameCall').textContent = driverName;
+            
+            timer(); 
+        });
+        
+        window.onbeforeunload = function() {
+            clearTimeout(t);
+        };
+    </script>
+</body>
+</html>

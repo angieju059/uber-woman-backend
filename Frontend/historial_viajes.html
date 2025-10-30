@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Uber Woman - Historial</title>
+    <style>
+        :root {
+            --color-primary: #EE3E92;
+            --color-secondary: #993399;
+            --color-text-dark: #333333;
+            --color-bg-light: #F0F0F0;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Arial', 'Segoe UI', sans-serif; }
+        body { background-color: var(--color-bg-light); display: flex; justify-content: center; align-items: flex-start; min-height: 100vh; }
+        .app-container { 
+            width: 100%; max-width: 400px; min-height: 100vh; background-color: white; 
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5); 
+        }
+        header { 
+            background-color: var(--color-primary); color: white; padding: 15px 20px; 
+            display: flex; align-items: center; justify-content: flex-start; font-weight: 800; 
+        }
+        header .back-arrow { font-size: 1.5em; cursor: pointer; margin-right: 15px; }
+        header .title-text { font-size: 1.2em; }
+
+        .content { padding: 20px; }
+        h1 { color: var(--color-secondary); margin-bottom: 25px; font-size: 1.8em; }
+
+        .trip-card {
+            background-color: #fff; padding: 15px; border-radius: 8px; margin-bottom: 15px;
+            border-left: 5px solid var(--color-secondary); box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        .trip-header { display: flex; justify-content: space-between; margin-bottom: 10px; }
+        .trip-header strong { color: var(--color-secondary); }
+        .trip-details p { margin: 3px 0; font-size: 0.9em; }
+        .rating { color: gold; font-size: 1.1em; }
+    </style>
+</head>
+<body>
+    <div class="app-container">
+        <header>
+            <span class="back-arrow" onclick="window.location.href='plataforma_principal.html'">←</span>
+            <span class="title-text">Historial de Viajes</span>
+        </header>
+
+        <div class="content">
+            <h1>Mis Viajes</h1>
+
+            <div class="trip-card">
+                <div class="trip-header">
+                    <strong>15 de Noviembre, 2025</strong>
+                    <span style="color: var(--color-secondary); font-weight: bold;">$ 18.500</span>
+                </div>
+                <div class="trip-details">
+                    <p>Origen: Carrera 30 # 45</p>
+                    <p>Destino: Universidad Nacional</p>
+                    <p>Conductora: Marcela Diaz <span class="rating">⭐⭐⭐⭐⭐</span></p>
+                    <p>Método: Tarjeta de Crédito</p>
+                </div>
+            </div>
+
+            <div class="trip-card">
+                <div class="trip-header">
+                    <strong>12 de Noviembre, 2025</strong>
+                    <span style="color: var(--color-secondary); font-weight: bold;">$ 14.700</span>
+                </div>
+                <div class="trip-details">
+                    <p>Origen: Casa</p>
+                    <p>Destino: Centro Comercial</p>
+                    <p>Conductora: Laura Rodríguez <span class="rating">⭐⭐⭐⭐</span></p>
+                    <p>Método: Efectivo</p>
+                </div>
+            </div>
+            
+            <p style="text-align: center; margin-top: 30px; color: #888;">No hay más viajes recientes.</p>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Uber Woman - Pago</title>
+    <style>
+        :root {
+            --color-primary: #EE3E92;
+            --color-secondary: #993399;
+            --color-text-dark: #333333;
+            --color-bg-light: #F0F0F0;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Arial', 'Segoe UI', sans-serif; }
+        body { background-color: var(--color-bg-light); display: flex; justify-content: center; align-items: flex-start; min-height: 100vh; }
+        .app-container { 
+            width: 100%; max-width: 400px; min-height: 100vh; background-color: white; 
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5); 
+        }
+        header { 
+            background-color: var(--color-primary); color: white; padding: 15px 20px; 
+            display: flex; align-items: center; justify-content: flex-start; font-weight: 800; 
+        }
+        header .back-arrow { font-size: 1.5em; cursor: pointer; margin-right: 15px; }
+        header .title-text { font-size: 1.2em; }
+
+        .content { padding: 20px; }
+        h1 { color: var(--color-secondary); margin-bottom: 25px; font-size: 1.8em; }
+
+        .payment-method {
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 15px; border: 1px solid #ccc; border-radius: 8px; margin-bottom: 10px;
+            background-color: #fff;
+        }
+        .method-details { display: flex; align-items: center; }
+        .method-icon { font-size: 1.5em; margin-right: 15px; color: var(--color-primary); }
+        .main-button {
+            display: block; width: 100%; background-color: var(--color-secondary); color: white; padding: 15px; 
+            text-align: center; border-radius: 8px; font-size: 1.1em; font-weight: bold; 
+            text-decoration: none; margin-top: 30px; cursor: pointer; border: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="app-container">
+        <header>
+            <span class="back-arrow" onclick="window.location.href='plataforma_principal.html'">←</span>
+            <span class="title-text">Métodos de Pago</span>
+        </header>
+
+        <div class="content">
+            <h1>Tus Métodos</h1>
+
+            <div class="payment-method">
+                <div class="method-details">
+                    <span class="method-icon">💵</span>
+                    <div>
+                        <strong>Efectivo</strong>
+                        <small>Método predeterminado</small>
+                    </div>
+                </div>
+                <span>Actual</span>
+            </div>
+
+            <div class="payment-method">
+                <div class="method-details">
+                    <span class="method-icon">💳</span>
+                    <div>
+                        <strong>Tarjeta Crédito</strong>
+                        <small>Visa **** 4321</small>
+                    </div>
+                </div>
+                <span style="color: green;">Conectado</span>
+            </div>
+            
+            <div class="payment-method">
+                <div class="method-details">
+                    <span class="method-icon">📱</span>
+                    <div>
+                        <strong>Nequi</strong>
+                        <small>300 *** *123</small>
+                    </div>
+                </div>
+                <span style="color: green;">Conectado</span>
+            </div>
+
+            <button class="main-button">AÑADIR NUEVO MÉTODO</button>
+        </div>
+    </div>
+</body>
+</html>

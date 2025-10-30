@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Uber Woman - Viaje Solicitado</title>
+    <style>
+        :root {
+            --color-primary: #EE3E92;
+            --color-secondary: #993399;
+            --color-text-dark: #333333;
+            --color-bg-light: #F0F0F0; 
+            --color-accent-green: #4CAF50;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Arial', 'Segoe UI', sans-serif; }
+        body { background-color: var(--color-bg-light); display: flex; justify-content: center; align-items: flex-start; min-height: 100vh; }
+        .app-container { 
+            width: 100%; max-width: 400px; min-height: 100vh; background-color: white; 
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5); padding: 20px;
+        }
+        header { background-color: var(--color-primary); color: white; padding: 15px 20px; display: flex; 
+            justify-content: flex-start; margin: -20px -20px 20px -20px; font-weight: 800;
+        }
+        header .back-arrow { margin-right: 15px; cursor: pointer; }
+
+        .trip-summary { box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1); padding: 20px; border-radius: 10px; text-align: center; }
+        .detail-row { display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid #eee; }
+        .detail-label { font-weight: 500; }
+        .detail-value { color: var(--color-secondary); font-weight: bold; }
+        .edit-button { background-color: #FFC0CB; color: var(--color-secondary); border: none; padding: 8px 15px; 
+            border-radius: 20px; font-weight: bold; cursor: pointer; margin: 10px auto 25px auto; display: inline-block;
+        }
+        .total-price { font-size: 1.8em; color: var(--color-secondary); font-weight: 900; margin: 20px 0; }
+        .status-button { width: 100%; padding: 15px; border: none; border-radius: 10px; font-weight: bold; color: white; cursor: pointer; }
+        .status-searching { background-color: var(--color-secondary); }
+        .status-assigned { background-color: var(--color-accent-green); }
+        .driver-info-section { margin-top: 30px; padding-top: 20px; border-top: 1px solid #eee; }
+        .driver-detail-row { display: flex; align-items: center; padding: 5px 0; }
+        .driver-detail-row span:first-child { margin-right: 10px; color: var(--color-secondary); }
+    </style>
+</head>
+<body>
+    <div class="app-container">
+        <header>
+            <span class="back-arrow" onclick="window.location.href='busqueda_precios.html'">← Atrás</span>
+            <span>Uber Woman</span>
+        </header>
+
+        <div class="trip-summary">
+            <h2 id="serviceTitle" style="color: var(--color-secondary); font-size: 1.5em; margin-bottom: 20px;">Servicio Seleccionado</h2>
+            
+            <div class="detail-row">
+                <span class="detail-label">Destino:</span>
+                <span class="detail-value" id="tripDestination">N/A</span>
+            </div>
+
+            <button class="edit-button" onclick="window.location.href='busqueda_precios.html'">
+                ✏️ Editar destino
+            </button>
+            
+            <div class="detail-row">
+                <span class="detail-label">Servicio:</span>
+                <span class="detail-value" id="tripService">N/A</span>
+            </div>
+
+            <div class="detail-row">
+                <span class="detail-label">Tiempo Estimado:</span>
+                <span class="detail-value" id="tripTime">N/A</span>
+            </div>
+
+            <div class="detail-row">
+                <span class="detail-label">Método de Pago:</span>
+                <span class="detail-value" id="tripPayment">N/A</span>
+            </div>
+
+            <div class="total-price" id="tripPrice">$ 0</div>
+
+            <button class="status-button status-searching" id="statusButton" onclick="window.location.href='mapa_seguimiento.html'">
+                Buscando conductora...
+            </button>
+
+            <div class="driver-info-section" id="driverInfo">
+                <h3 style="font-size: 1.2em; margin-bottom: 15px;">Información de la conductora</h3>
+                
+                <div class="driver-detail-row">
+                    <span>🙂</span><span class="detail-label">Nombre:</span>
+                    <span class="detail-value" id="driverNameDisplay">Laura Rodríguez</span>
+                </div>
+                
+                <div class="driver-detail-row">
+                    <span>🚗</span><span class="detail-label">Vehículo:</span>
+                    <span class="detail-value" id="driverVehicleDisplay">Chevrolet Spark GT</span>
+                </div>
+
+                <div class="driver-detail-row">
+                    <span>🔢</span><span class="detail-label">Placa:</span>
+                    <span class="detail-value" id="driverPlateDisplay">ABC-123</span>
+                </div>
+
+                <div class="driver-detail-row">
+                    <span>⭐</span><span class="detail-label">Calificación:</span>
+                    <span class="detail-value" id="driverRatingDisplay">4.9 / 5</span>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const service = localStorage.getItem('selectedService');
+            const destination = localStorage.getItem('selectedDestination');
+            const price = localStorage.getItem('selectedPrice');
+            const time = localStorage.getItem('selectedTime');
+            const paymentMethod = localStorage.getItem('selectedPaymentMethod');
+
+            if (service && destination && price && time && paymentMethod) {
+                document.getElementById('serviceTitle').textContent = service;
+                document.getElementById('tripDestination').textContent = destination;
+                document.getElementById('tripService').textContent = service;
+                document.getElementById('tripTime').textContent = time + " min"; 
+                document.getElementById('tripPayment').textContent = paymentMethod;
+                document.getElementById('tripPrice').textContent = price; 
+                
+                setTimeout(() => {
+                    const statusButton = document.getElementById('statusButton');
+                    statusButton.textContent = '¡Conductora asignada! 🚗';
+                    statusButton.classList.remove('status-searching');
+                    statusButton.classList.add('status-assigned');
+                    
+                    document.getElementById('driverInfo').style.display = 'block';
+
+                    localStorage.setItem('driverName', 'Laura Rodríguez');
+                    localStorage.setItem('driverVehicle', 'Chevrolet Spark GT');
+                    localStorage.setItem('driverPlate', 'ABC-123');
+                    localStorage.setItem('driverRating', '4.9 / 5');
+                    
+                }, 3000); 
+            } else {
+                document.getElementById('serviceTitle').textContent = "Error: Datos no encontrados. Redirigiendo...";
+                setTimeout(() => { window.location.href='busqueda_precios.html'; }, 2000);
+            }
+
+            document.getElementById('driverInfo').style.display = 'none';
+        });
+    </script>
+</body>
+</html>

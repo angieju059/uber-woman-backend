@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Uber Woman - Inicio</title>
+    <style>
+        :root {
+            --color-primary: #EE3E92;
+            --color-secondary: #993399;
+            --color-text-light: #FFFFFF;
+            --color-text-dark: #333333;
+            --color-bg-light: #F0F0F0;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Arial', 'Segoe UI', sans-serif; }
+        body { background-color: var(--color-bg-light); display: flex; justify-content: center; align-items: flex-start; min-height: 100vh; }
+        .app-container { 
+            width: 100%; max-width: 400px; min-height: 100vh; background-color: white; 
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5); 
+            padding: 20px;
+            position: relative; 
+            overflow-x: hidden; 
+        }
+        
+        /* --- ESTILOS DEL MENÚ LATERAL --- */
+        .menu-overlay { 
+            display: none; 
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
+            background: rgba(0, 0, 0, 0.5); z-index: 50; 
+        }
+        .menu-content { 
+            width: 70%; height: 100%; background: var(--color-primary); 
+            transform: translateX(-100%); transition: transform 0.3s ease-in-out; 
+            position: absolute; left: 0; top: 0; padding-top: 40px; color: white; 
+            box-shadow: 5px 0 15px rgba(0, 0, 0, 0.3); 
+        }
+        .menu-overlay.active { display: flex; } 
+        .menu-overlay.active .menu-content { transform: translateX(0); } 
+
+        .user-info { 
+            padding: 0 20px 20px; border-bottom: 1px solid rgba(255, 255, 255, 0.3); 
+            margin-bottom: 10px; display: flex; align-items: center; 
+        }
+        .user-pic { 
+            width: 50px; height: 50px; background-color: white; border-radius: 50%; 
+            display: flex; justify-content: center; align-items: center; 
+            font-size: 1.8em; margin-right: 15px; flex-shrink: 0; 
+        }
+        .user-details { display: flex; flex-direction: column; }
+        .user-details p { margin: 0; font-size: 1em; font-weight: bold; } 
+        .user-details small { font-size: 0.8em; } 
+        
+        .menu-item { 
+            padding: 12px 20px; cursor: pointer; display: flex; align-items: center; 
+            font-weight: 500; font-size: 0.95em; 
+        }
+        .menu-item span { 
+            margin-right: 15px; font-size: 1.2em; width: 25px; text-align: center;
+        }
+        .menu-item:hover { background-color: rgba(0, 0, 0, 0.1); }
+        /* --- FIN ESTILOS MENÚ LATERAL --- */
+        
+        header { 
+            background-color: var(--color-primary); color: var(--color-text-light); padding: 15px 20px; 
+            display: flex; align-items: center; justify-content: space-between; margin: -20px -20px 20px -20px; 
+            font-weight: 800;
+        }
+        .header-icons span { margin-left: 10px; }
+        .menu-icon { cursor: pointer; } 
+
+        h1 { color: var(--color-secondary); margin-bottom: 20px; font-size: 1.8em; }
+        
+        .main-button {
+            display: block; background-color: var(--color-primary); color: white; padding: 15px; 
+            text-align: center; border-radius: 10px; font-size: 1.2em; font-weight: bold; 
+            text-decoration: none; margin-top: 30px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .info-card {
+            background-color: var(--color-bg-light); padding: 15px; border-radius: 8px; 
+            text-align: center; color: var(--color-secondary); font-size: 0.9em; margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="app-container">
+        <div class="menu-overlay" id="menuOverlay" onclick="cerrarMenu()">
+            <div class="menu-content" id="menuContent" onclick="event.stopPropagation()">
+                <div class="user-info">
+                    <div class="user-pic">🙂</div>
+                    <div class="user-details">
+                        <p class="user-name">MUJER WOMAN</p>
+                        <small>mujer@woman.com</small>
+                    </div>
+                </div>
+                <div class="menu-item" onclick="window.location.href='plataforma_principal.html'"><span>🏠</span> INICIO</div>
+                <div class="menu-item" onclick="window.location.href='metodos_pago.html'"><span>💳</span> MÉTODO DE PAGO</div>
+                <div class="menu-item" onclick="window.location.href='historial_viajes.html'"><span>⏱️</span> HISTORIAL DE VIAJES</div>
+                <div class="menu-item" onclick="window.location.href='boton_panico.html'"><span>🚨</span> BOTÓN DE PÁNICO</div>
+                <div class="menu-item" style="margin-top: 15px;" onclick="window.location.href='ingreso_registro.html'"><span>🚪</span> CERRAR SESIÓN</div>
+            </div>
+        </div>
+        <header>
+            <span class="menu-icon" onclick="abrirMenu()">☰</span> 
+            <span>Uber Woman</span>
+            <div class="header-icons">
+                <span>🔔</span>
+                <span>🔗</span>
+                <span>🔎</span>
+            </div>
+        </header>
+
+        <h1>Bienvenida, Mujer Woman</h1>
+        
+        <p style="color: var(--color-text-dark);">¡Lista para viajar de forma segura!</p>
+
+        <a href="busqueda_precios.html" class="main-button">
+            ¿A DÓNDE VAMOS HOY? 📍
+        </a>
+
+        <div class="info-card">
+            <p>Tu código de seguridad actual es: **0409**</p>
+        </div>
+        
+    </div>
+
+    <script>
+        // Funciones del menú
+        function abrirMenu() { 
+            const overlay = document.getElementById('menuOverlay');
+            overlay.style.display = 'flex'; 
+            setTimeout(() => { overlay.classList.add('active'); }, 10);
+        }
+
+        function cerrarMenu() { 
+            const overlay = document.getElementById('menuOverlay');
+            overlay.classList.remove('active'); 
+            setTimeout(() => { overlay.style.display = 'none'; }, 300);
+        }
+    </script>
+</body>
+</html>

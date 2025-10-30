@@ -1,0 +1,177 @@
+/* Variables para colores clave */
+:root {
+    --color-primary: #EE3E92; /* Rosa más intenso/magenta oscuro */
+    --color-secondary: #993399; /* Morado/magenta oscuro para botones y texto principal */
+    --color-text-light: #FFFFFF;
+    --color-text-dark: #333333;
+    --color-bg-light: #FFFFFF; /* Fondo blanco para el formulario */
+    --color-input-bg: #F0F0F0; /* Fondo gris claro para inputs */
+    --color-placeholder: #888888; /* Color para el texto del placeholder */
+}
+
+/* Estilos Generales y Reseteo Básico */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    /* Fuente simulada. Si tienes una fuente específica, usa @font-face */
+    font-family: 'Arial', sans-serif; 
+}
+
+body {
+    background-color: #333333; /* Fondo oscuro fuera del "móvil" */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+/* Contenedor principal (simula la pantalla del móvil) */
+.app-container {
+    width: 100%;
+    max-width: 400px; /* Ancho típico de un diseño móvil */
+    min-height: 800px; /* Altura fija para simular el dispositivo */
+    background-color: var(--color-primary);
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    display: flex;
+    flex-direction: column;
+}
+
+/* Estilos del Encabezado (Rosa Intenso) */
+.header {
+    padding: 50px 20px 0px; /* Ajuste para el espacio */
+    text-align: center;
+    color: var(--color-text-light);
+    position: relative; /* Para que el form-container pueda superponerse */
+    z-index: 1;
+}
+
+.logo {
+    font-size: 3.5em;
+    font-weight: 700;
+    margin-bottom: 5px;
+    font-family: 'Georgia', serif; /* Para simular la fuente del logo */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); /* Efecto de sombra para el logo */
+}
+
+.slogan {
+    font-size: 0.85em;
+    font-weight: 300;
+    margin-bottom: 20px; /* Espacio para el form-container */
+}
+
+/* Contenedor del Formulario (la sección blanca con la curva) */
+.form-container {
+    background-color: var(--color-bg-light);
+    border-top-left-radius: 40px; /* Curva más pronunciada */
+    border-top-right-radius: 40px;
+    padding: 40px 30px;
+    flex-grow: 1;
+    margin-top: -60px; /* Mueve el formulario hacia arriba para superponerse al slogan */
+    position: relative;
+    z-index: 2;
+    box-shadow: 0 -5px 15px rgba(0, 0, 0, 0.1); /* Sombra en la parte superior */
+}
+
+.title {
+    color: var(--color-secondary);
+    font-size: 1.8em;
+    text-align: center;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.subtitle {
+    color: var(--color-text-dark);
+    font-size: 0.8em;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+/* Estilos de los Grupos de Input */
+.input-group {
+    margin-bottom: 20px;
+}
+
+/* Para ocultar las etiquetas visualmente, pero mantenerlas para accesibilidad */
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+}
+
+/* Estilo de los campos de texto con fondo gris y bordes redondeados */
+input[type="text"], 
+input[type="password"] {
+    width: 100%;
+    padding: 12px 15px;
+    border: none;
+    border-radius: 25px; /* Bordes redondeados */
+    background-color: var(--color-input-bg);
+    font-size: 1em;
+    outline: none;
+    color: var(--color-text-dark);
+}
+
+input::placeholder {
+    color: var(--color-placeholder);
+    font-size: 0.9em;
+}
+
+input:focus {
+    box-shadow: 0 0 0 2px var(--color-secondary); /* Borde al enfocar */
+}
+
+/* Estilos de Botones de Ingresar (Magenta Oscuro) */
+.button {
+    width: 90%; /* Más estrecho y centrado */
+    max-width: 300px;
+    padding: 12px;
+    border: none;
+    border-radius: 25px;
+    font-size: 1em;
+    font-weight: bold;
+    cursor: pointer;
+    margin: 30px auto 0 auto; /* Centrar el botón */
+    display: block; /* Para que margin auto funcione */
+    transition: background-color 0.3s;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.primary-button {
+    background-color: var(--color-secondary);
+    color: var(--color-text-light);
+}
+
+.primary-button:hover {
+    background-color: var(--color-primary);
+}
+
+/* Estilos de Enlaces Adicionales */
+.links {
+    text-align: center;
+    margin-top: 25px;
+    font-size: 0.85em;
+}
+
+.links a {
+    display: inline;
+    color: var(--color-secondary);
+    text-decoration: none;
+    margin: 0 5px;
+}
+
+.link-forgot {
+    font-weight: normal;
+}
+
+.link-register {
+    font-weight: bold;
+    text-decoration: underline; /* Subrayar "Regístrate" */
+}
