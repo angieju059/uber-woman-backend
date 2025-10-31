@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Plataforma Principal - Uber Woman</title>
-    <link rel="stylesheet" href="Style.css">
+    <link rel="stylesheet" href="/uber-woman-backend/Style.css"> 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
@@ -77,7 +77,7 @@
                 userNameElement.textContent = user.name ? user.name.toUpperCase() : "USUARIA WOMAN";
                 userEmailElement.textContent = user.email;
             } else {
-                // Si no hay datos, redirigir al login (por seguridad)
+                // Esto está comentado para que puedas trabajar fácilmente
                 // window.location.href = 'ingreso_registro.html'; 
             }
 
