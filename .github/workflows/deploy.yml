@@ -1,19 +1,19 @@
-name: Deploy Frontend to GitHub Pages
+name: Deploy Frontend to GitHub Pages Simple
 
 on:
   push:
     branches:
-      - main  # Esto activará la publicación cuando subas cambios a la rama main
+      - main  # Tu rama principal
+
 jobs:
-  deploy:
+  build-and-deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout Code
+      - name: Checkout
         uses: actions/checkout@v3
 
-      - name: Deploy Frontend to Pages
-        uses: peaceiris/actions-gh-pages@v3
+      - name: Deploy to GitHub Pages
+        uses: JamesIves/github-pages-deploy-action@v4
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./Frontend  # ESTO FUERZA A PUBLICAR LA CARPETA DEL FRONTEND
-          cname: ''
+          branch: gh-pages  # Esta es la rama que usará para el despliegue
+          folder: Frontend  # Aquí está tu código HTML
