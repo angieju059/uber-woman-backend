@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Plataforma Principal - Uber Woman</title>
-    <link rel="stylesheet" href="/uber-woman-backend/Style.css"> 
+    <link rel="stylesheet" href="Style.css"> 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
@@ -20,13 +20,12 @@
                 <a href="busqueda_precios.html" class="header-icon search-icon">
                     <i class="fas fa-search"></i> 
                 </a> 
-                </div>
+            </div>
         </header>
 
         <main class="content">
             <div class="map-simulation">
                 <p>Mapa de Ubicación en Tiempo Real (Simulación)</p>
-                
             </div>
 
             <div class="info-card">
@@ -73,20 +72,17 @@
             const userData = localStorage.getItem('currentUser');
             if (userData) {
                 const user = JSON.parse(userData);
-                // Si el nombre existe, úsalo. Si no, usa "Usuario" por defecto.
                 userNameElement.textContent = user.name ? user.name.toUpperCase() : "USUARIA WOMAN";
                 userEmailElement.textContent = user.email;
             } else {
-                // Esto está comentado para que puedas trabajar fácilmente
+                // Si no hay datos, redirigir al login (comentado para evitar interrupciones)
                 // window.location.href = 'ingreso_registro.html'; 
             }
 
             // 3. LÓGICA DE CERRAR SESIÓN (CRUD: BORRADO)
             logoutButton.addEventListener('click', (e) => {
                 e.preventDefault();
-                // Elimina los datos del usuario de la memoria local (CRUD: Borrado)
                 localStorage.removeItem('currentUser');
-                // Redirige al login
                 window.location.href = 'ingreso_registro.html';
             });
         });
