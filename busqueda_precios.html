@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Uber Woman - ¿A Dónde Vas?</title>
+    <style>
+        :root {
+            --color-primary: #EE3E92;
+            --color-secondary: #993399;
+            --color-text-light: #FFFFFF;
+            --color-text-dark: #333333;
+            --color-bg-light: #F0F0F0; 
+            --color-accent-green: #4CAF50;
+            --color-input-bg: #EFEFEF;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Arial', 'Segoe UI', sans-serif; }
+        body { background-color: var(--color-bg-light); display: flex; justify-content: center; align-items: flex-start; min-height: 100vh; }
+        .app-container { width: 100%; max-width: 400px; min-height: 100vh; background-color: white; box-shadow: 0 0 20px rgba(0, 0, 0, 0.5); position: relative; overflow-x: hidden; }
+
+        /* --- ESTILOS DEL MENÚ LATERAL CORREGIDOS Y ESTÉTICOS --- */
+        .menu-overlay { 
+            display: none; 
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
+            background: rgba(0, 0, 0, 0.5); z-index: 50; 
+        }
+        .menu-content { 
+            width: 70%; 
+            height: 100%; 
+            background: var(--color-primary); 
+            transform: translateX(-100%); 
+            transition: transform 0.3s ease-in-out; 
+            position: absolute; left: 0; top: 0; 
+            padding-top: 40px; 
+            color: white; 
+            box-shadow: 5px 0 15px rgba(0, 0, 0, 0.3); 
+        }
+        .menu-overlay.active { display: flex; } 
+        .menu-overlay.active .menu-content { transform: translateX(0); } 
+
+        /* Perfil de Usuario */
+        .user-info { 
+            padding: 0 20px 20px; 
+            border-bottom: 1px solid rgba(255, 255, 255, 0.3); 
+            margin-bottom: 10px; 
+            display: flex; 
+            align-items: center; 
+        }
+        .user-pic { 
+            width: 50px; height: 50px; 
+            background-color: white; 
+            border-radius: 50%; 
+            display: flex; justify-content: center; align-items: center; 
+            font-size: 1.8em; 
+            margin-right: 15px; 
+            flex-shrink: 0; 
+        }
+        .user-details {
+            display: flex;
+            flex-direction: column;
+        }
+        .user-details p { margin: 0; font-size: 1em; font-weight: bold; } 
+        .user-details small { font-size: 0.8em; } 
+        
+        /* Ítems del Menú */
+        .menu-item { 
+            padding: 12px 20px; 
+            cursor: pointer; 
+            display: flex; 
+            align-items: center; 
+            font-weight: 500; 
+            font-size: 0.95em; 
+        }
+        .menu-item span { 
+            margin-right: 15px; 
+            font-size: 1.2em; 
+            width: 25px; 
+            text-align: center;
+        }
+        .menu-item:hover { background-color: rgba(0, 0, 0, 0.1); }
+        /* --- FIN ESTILOS MENÚ LATERAL --- */
+        
+        /* --- ESTILOS DE CONTENIDO --- */
+        header { background-color: var(--color-primary); color: var(--color-text-light); padding: 15px; display: flex; align-items: center; justify-content: space-between; font-weight: 800; }
+        .menu-icon { cursor: pointer; }
+        .content { padding: 20px; }
+        .title-section h1 { color: var(--color-secondary); font-size: 1.8em; text-align: center; margin-bottom: 5px; }
+        .title-section p { color: var(--color-secondary); font-size: 0.9em; text-align: center; margin-bottom: 20px; }
+
+        .destination-form { background-color: white; border-radius: 10px; padding: 15px; box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1); margin-bottom: 20px; }
+        .input-group { display: flex; align-items: center; padding: 5px 0; }
+        .destination-input { flex-grow: 1; display: flex; align-items: center; background-color: var(--color-input-bg); border-radius: 20px; padding: 8px 15px; }
+        .destination-input input { border: none; background: none; flex-grow: 1; font-size: 1em; outline: none; }
+        .destination-input button { background: none; border: none; color: var(--color-secondary); cursor: pointer; font-size: 1.2em; }
+        
+        .payment-section select { width: 100%; padding: 10px; border-radius: 8px; border: 1px solid #ccc; font-size: 1em; appearance: none; background-size: 12px; color: var(--color-secondary); font-weight: bold; }
+        
+        .service-option { display: flex; justify-content: space-between; align-items: center; padding: 15px 0; border-bottom: 1px solid #eee; cursor: pointer; transition: background-color 0.1s; }
+        .service-details strong { display: block; font-size: 1.1em; color: var(--color-secondary); }
+        .service-price span { display: block; font-size: 1.2em; color: var(--color-secondary); font-weight: bold; }
+        .hidden { display: none !important; }
+    </style>
+</head>
+<body>
+    <div class="app-container">
+        <div class="menu-overlay" id="menuOverlay" onclick="cerrarMenu()">
+            <div class="menu-content" id="menuContent" onclick="event.stopPropagation()">
+                <div class="user-info">
+                    <div class="user-pic">🙂</div>
+                    <div class="user-details">
+                        <p class="user-name">JULIETH CARDENAS</p>
+                        <small>juliita0509@yo.com</small>
+                    </div>
+                </div>
+                <div class="menu-item" onclick="window.location.href='plataforma_principal.html'"><span>🏠</span> INICIO</div>
+                <div class="menu-item"><span>💳</span> MÉTODO DE PAGO</div>
+                <div class="menu-item"><span>⏱️</span> HISTORIAL DE VIAJES</div>
+                <div class="menu-item"><span>🚨</span> BOTÓN DE PÁNICO</div>
+                <div class="menu-item" style="margin-top: 15px;"><span>🚪</span> CERRAR SESIÓN</div>
+            </div>
+        </div>
+
+        <header>
+            <span class="menu-icon" onclick="abrirMenu()">☰</span>
+            <span>Uber Woman</span>
+            <div class="header-icons"><span>🔔</span><span>🔗</span><span>🔎</span></div>
+        </header>
+
+        <div class="content">
+            <div class="title-section">
+                <h1>¿A DÓNDE VAS?</h1>
+                <p>CONSIGUE TU ARRENDAMIENTO MÁS SEGURA, ENTRE TODAS NOS CUIDAMOS</p>
+            </div>
+
+            <div class="destination-form">
+                <div class="input-group">
+                    <span style="font-size: 1.2em; color: var(--color-secondary); margin-right: 10px;">⚫⚫⚫</span>
+                    <div class="destination-input">
+                        <input type="text" id="destinationInput" placeholder="DESTINO" onkeypress="if(event.keyCode==13) { buscarDestino(); return false; }">
+                        <button type="button" onclick="buscarDestino()">🔎</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="payment-section">
+                <label for="paymentMethod" style="font-weight: bold; display: block; margin-bottom: 10px;">Pagar con:</label>
+                <select id="paymentMethod">
+                    <option value="Efectivo" selected>💵 Efectivo</option>
+                    <option value="Tarjeta de Crédito">💳 Tarjeta de Crédito (Conectado)</option>
+                    <option value="Nequi">📱 Nequi (Conectado)</option>
+                    <option value="Daviplata">🏛️ Daviplata (Conectado)</option>
+                </select>
+            </div>
+
+            <p id="instructionMessage" style="text-align: center; color: #888; margin-top: 30px; font-weight: bold;">
+                Ingresa un destino y presiona la lupa (🔎) para ver las opciones y precios.
+            </p>
+
+            <div id="serviceOptionYa" class="service-option hidden" onclick="seleccionarServicio('UberYa')">
+                <div class="service-info" style="display: flex; align-items: center;">
+                    <span style="font-size: 1.5em; margin-right: 15px;">📍</span>
+                    <div class="service-details">
+                        <strong>UberYa <span id="timeYa">19</span> min</strong>
+                        <small style="color: #888;">Tu viaje personal, la opción más rápida.</small>
+                    </div>
+                </div>
+                <div class="service-price"><span id="priceYa">$ 14.700</span></div>
+            </div>
+
+            <div id="serviceOptionFlash" class="service-option hidden" onclick="seleccionarServicio('UberFlash')">
+                <div class="service-info" style="display: flex; align-items: center;">
+                    <span style="font-size: 1.5em; margin-right: 15px;">⚡</span>
+                    <div class="service-details">
+                        <strong>UberFlash <span id="timeFlash">19</span> min</strong>
+                        <small style="color: #888;">Un envío rápido y seguro.</small>
+                    </div>
+                </div>
+                <div class="service-price"><span id="priceFlash">$ 21.600</span></div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // Funciones del menú
+        function abrirMenu() { 
+            const overlay = document.getElementById('menuOverlay');
+            overlay.style.display = 'flex'; 
+            setTimeout(() => { overlay.classList.add('active'); }, 10);
+        }
+
+        function cerrarMenu() { 
+            const overlay = document.getElementById('menuOverlay');
+            overlay.classList.remove('active'); 
+            setTimeout(() => { overlay.style.display = 'none'; }, 300);
+        }
+
+        function buscarDestino() {
+            const destination = document.getElementById('destinationInput').value;
+            const dest = destination.toLowerCase().trim();
+            const serviceYa = document.getElementById('serviceOptionYa');
+            const serviceFlash = document.getElementById('serviceOptionFlash');
+            const instruction = document.getElementById('instructionMessage');
+            
+            if (dest === "") {
+                serviceYa.classList.add('hidden');
+                serviceFlash.classList.add('hidden');
+                instruction.textContent = "Ingresa un destino y presiona la lupa (🔎) para ver las opciones y precios.";
+                instruction.style.display = 'block';
+                instruction.style.color = '#888'; 
+                return;
+            }
+
+            let baseYa = 14700;
+            let baseFlash = 21600;
+            let time = 19;
+            
+            if (dest.includes("universidad") || dest.includes("portal")) {
+                baseYa = 18500;
+                baseFlash = 25900;
+                time = 25;
+            } else if (dest.includes("aeropuerto")) {
+                baseYa = 35000;
+                baseFlash = 45000;
+                time = 40;
+            } else if (dest.includes("centro comercial")) {
+                baseYa = 16000; 
+                baseFlash = 22500;
+                time = 22;
+            } else if (dest.includes("chia")) {
+                baseYa = 28000; 
+                baseFlash = 35000;
+                time = 35;
+            }
+
+            serviceYa.classList.remove('hidden');
+            serviceFlash.classList.remove('hidden');
+            
+            const formatPrice = (price) => `$ ${price.toLocaleString('es-CO')}`;
+
+            document.getElementById('priceYa').textContent = formatPrice(baseYa);
+            document.getElementById('priceFlash').textContent = formatPrice(baseFlash);
+            document.getElementById('timeYa').textContent = time;
+            document.getElementById('timeFlash').textContent = time;
+            
+            instruction.textContent = "Opciones encontradas para: " + destination;
+            instruction.style.display = 'block';
+            instruction.style.color = 'var(--color-accent-green)';
+        }
+
+        function seleccionarServicio(servicio) {
+            const destination = document.getElementById('destinationInput').value;
+            
+            if (document.getElementById('serviceOptionYa').classList.contains('hidden')) {
+                 alert("Por favor, presiona la lupa (🔎) o Enter después de ingresar el destino para calcular el precio.");
+                 return;
+            }
+            
+            const price = (servicio === 'UberYa') ? 
+                          document.getElementById('priceYa').textContent : 
+                          document.getElementById('priceFlash').textContent;
+            const time = (servicio === 'UberYa') ? 
+                         document.getElementById('timeYa').textContent : 
+                         document.getElementById('timeFlash').textContent;
+            const paymentMethod = document.getElementById('paymentMethod').value;
+
+            // Guardar datos en el almacenamiento local para la siguiente pantalla
+            localStorage.setItem('selectedService', servicio);
+            localStorage.setItem('selectedDestination', destination);
+            localStorage.setItem('selectedPrice', price);
+            localStorage.setItem('selectedTime', time);
+            localStorage.setItem('selectedPaymentMethod', paymentMethod);
+
+            window.location.href = 'asignacion_conductora.html';
+        }
+
+        document.addEventListener("DOMContentLoaded", () => {
+            document.getElementById('serviceOptionYa').classList.add('hidden');
+            document.getElementById('serviceOptionFlash').classList.add('hidden');
+        });
+    </script>
+</body>
+</html>

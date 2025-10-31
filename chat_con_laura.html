@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat con Laura</title>
+    <style>
+        :root {
+            --color-primary: #EE3E92; /* Rosa Fuerte */
+            --color-secondary: #993399; /* Púrpura Intenso */
+            --color-text-dark: #333333;
+            --color-bg-light: #F0F0F0;
+        }
+
+        /* RESET BÁSICO Y FUENTE */
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Arial', 'Segoe UI', sans-serif; }
+        
+        /* CUERPO DE LA PÁGINA: Centra el app-container */
+        body { 
+            background-color: var(--color-bg-light); 
+            display: flex; 
+            justify-content: center; /* Centra horizontalmente */
+            align-items: flex-start; /* Alinea arriba verticalmente */
+            min-height: 100vh; /* Ocupa al menos el 100% del alto de la ventana */
+            overflow: hidden; /* Evita scrolls no deseados en el body */
+        }
+
+        /* CONTENEDOR PRINCIPAL DE LA APP (EL 'TELÉFONO') */
+        .app-container { 
+            width: 100%; /* Ocupa el 100% del ancho del padre (max-width de 400px) */
+            max-width: 400px; /* Ancho máximo para simular un móvil */
+            height: 100vh; /* Ocupa el 100% del alto de la ventana para una experiencia full-screen */
+            background-color: white; 
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5); /* Sombra para simular un dispositivo */
+            
+            display: flex; /* Habilita Flexbox */
+            flex-direction: column; /* Apila los elementos (Header, Chat, Input) verticalmente */
+        }
+
+        /* HEADER */
+        header { 
+            background-color: var(--color-primary); 
+            color: white; 
+            padding: 15px 20px; 
+            display: flex; 
+            align-items: center; 
+            justify-content: flex-start; /* Alinea los elementos al inicio */
+            font-weight: 800; 
+            flex-shrink: 0; /* Evita que el header se encoja */
+        }
+        header .back-arrow { 
+            font-size: 1.5em; 
+            cursor: pointer; 
+            margin-right: 15px; 
+        }
+        header .title-text { 
+            font-size: 1.2em; 
+            flex-grow: 1; /* Permite que el título ocupe el espacio restante */
+            text-align: center; 
+            transform: translateX(-15px); /* Ajuste visual para centrar con la flecha */
+        }
+        header .driver-icon {
+            font-size: 1.2em;
+        }
+        
+        /* ÁREA DE CONTENIDO DEL CHAT (DONDE APARECEN LAS BURBUJAS) */
+        .chat-content { 
+            flex-grow: 1; /* MUY IMPORTANTE: Hace que ocupe todo el espacio vertical disponible */
+            padding: 10px; 
+            overflow-y: auto; /* Permite el desplazamiento vertical cuando hay muchos mensajes */
+            display: flex; 
+            flex-direction: column; /* Apila las burbujas verticalmente */
+            background-color: var(--color-bg-light); /* Fondo suave para el chat */
+        }
+        .chat-box { 
+            flex-grow: 1; /* Permite que el chatBox empuje los mensajes hacia arriba */
+            display: flex; 
+            flex-direction: column; 
+            justify-content: flex-end; /* Alinea los mensajes al final (abajo) */
+        }
+        
+        /* ESTILOS DE LAS BURBUJAS DE MENSAJES */
+        .message-bubble { 
+            max-width: 75%; /* Máximo 75% del ancho para no ocupar todo */
+            padding: 10px 15px; 
+            border-radius: 20px; 
+            margin-bottom: 10px; 
+            line-height: 1.4; 
+            word-wrap: break-word; /* Rompe palabras largas */
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1); /* Sombra sutil */
+        }
+        .driver { /* Mensajes de Laura */
+            background-color: #e0e0e0; /* Gris claro */
+            align-self: flex-start; /* Alinea a la izquierda */
+            margin-right: auto; 
+            border-bottom-left-radius: 5px; /* Esquina inferior izquierda menos redondeada */
+        }
+        .user { /* Tus mensajes */
+            background-color: var(--color-secondary); /* Púrpura */
+            color: white; 
+            align-self: flex-end; /* Alinea a la derecha */
+            margin-left: auto; 
+            border-bottom-right-radius: 5px; /* Esquina inferior derecha menos redondeada */
+        }
+
+        /* ÁREA DE ENTRADA DE MENSAJES */
+        .message-input { 
+            padding: 10px; 
+            border-top: 1px solid #ccc; /* Línea separadora */
+            display: flex; /* Habilita Flexbox para input y botón */
+            align-items: center; 
+            flex-shrink: 0; /* Evita que el input se encoja */
+            background-color: white;
+        }
+        .message-input input { 
+            flex-grow: 1; /* Permite que el input ocupe el espacio disponible */
+            padding: 10px 15px; 
+            border-radius: 20px; 
+            border: 1px solid #ddd; 
+            font-size: 1em; 
+            outline: none; 
+            margin-right: 10px; /* Espacio entre input y botón */
+        }
+        .message-input button { 
+            background-color: var(--color-primary); 
+            color: white; 
+            border: none; 
+            border-radius: 50%; 
+            width: 40px; 
+            height: 40px; 
+            font-size: 1.5em; 
+            cursor: pointer; 
+            display: flex; /* Centra el icono del botón */
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+    </style>
+</head>
+<body>
+    <div class="app-container">
+        <header>
+            <span class="back-arrow" onclick="window.location.href='mapa_seguimiento.html'">←</span>
+            <span class="title-text">Chat con Laura</span>
+            <span class="driver-icon">🤨</span>
+        </header>
+
+        <div class="chat-content">
+            <div class="chat-box" id="chatBox">
+                </div>
+        </div>
+
+        <div class="message-input">
+            <input type="text" id="messageText" placeholder="Escribe un mensaje..." onkeypress="if(event.keyCode==13) sendMessage()">
+            <button onclick="sendMessage()">▶</button>
+        </div>
+    </div>
+    
+    <script>
+        function sendMessage() {
+            const input = document.getElementById('messageText');
+            const message = input.value.trim();
+            const chatBox = document.getElementById('chatBox');
+            
+            if (message === "") return;
+
+            // 1. Mostrar tu mensaje (USUARIO)
+            const userBubble = document.createElement('div');
+            userBubble.className = 'message-bubble user';
+            userBubble.textContent = message;
+            chatBox.appendChild(userBubble);
+
+            input.value = ''; // Limpiar el campo de texto
+            
+            // Hacer scroll para ver el mensaje
+            const chatContent = document.querySelector('.chat-content');
+            chatContent.scrollTop = chatContent.scrollHeight;
+
+            // 2. SIMULAR RESPUESTA AUTOMÁTICA DE LAURA (CONDUCTORA)
+            setTimeout(() => {
+                const driverBubble = document.createElement('div');
+                driverBubble.className = 'message-bubble driver';
+
+                // Lógica simple de respuesta basada en tu mensaje
+                let responseText = "Entendido. Sigo en camino, no te preocupes.";
+
+                if (message.toLowerCase().includes("hola")) {
+                    responseText = "¡Hola! ¿Necesitas algo? Sigo en ruta.";
+                } else if (message.toLowerCase().includes("llegas") || message.toLowerCase().includes("tardas")) {
+                    responseText = "Llego en 3 minutos. Ya estoy doblando la esquina.";
+                } else if (message.toLowerCase().includes("esperar") || message.toLowerCase().includes("tardo")) {
+                    responseText = "Claro, te espero un momento. Avísame cuando estés lista.";
+                } else if (message.toLowerCase().includes("gracias") || message.toLowerCase().includes("ok")) {
+                    responseText = "Con gusto. ¡Aquí te espero!";
+                } else if (message.toLowerCase().includes("seguridad") || message.toLowerCase().includes("codigo")) {
+                    responseText = "Mi código de seguridad es 0409. Recuerda confirmarlo al abordar.";
+                }
+                
+                driverBubble.textContent = responseText;
+                chatBox.appendChild(driverBubble);
+                
+                // Hacer scroll nuevamente para ver la respuesta de Laura
+                chatContent.scrollTop = chatContent.scrollHeight;
+            }, 1500); // Retraso de 1.5 segundos para simular que está "escribiendo"
+        }
+
+        // Asegura que el chat muestre los últimos mensajes al cargar (útil si hay mensajes iniciales)
+        document.addEventListener('DOMContentLoaded', () => {
+            const chatContent = document.querySelector('.chat-content');
+            chatContent.scrollTop = chatContent.scrollHeight;
+        });
+    </script>
+</body>
+</html>

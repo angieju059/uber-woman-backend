@@ -1,0 +1,110 @@
+<<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Uber Woman - Ingreso</title>
+    <style>
+        :root {
+            --color-primary: #EE3E92; /* Rosa Fuerte */
+            --color-secondary: #993399; /* Morado/Magenta */
+            --color-text-dark: #333333;
+            --color-button: #993399; /* Color de botón del segundo estilo de ingreso */
+            --color-input-bg: #EFEFEF; /* Gris claro para fondo de input */
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Arial', 'Segoe UI', sans-serif; }
+        /* Fondo de la aplicación completo en color primario */
+        body { background-color: var(--color-primary); display: flex; justify-content: center; align-items: flex-start; min-height: 100vh; }
+        
+        .app-container { 
+            width: 100%; max-width: 400px; min-height: 100vh; 
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5); 
+            display: flex; flex-direction: column; align-items: center;
+        }
+
+        /* Encabezado fijo con el logo */
+        .header-top {
+            padding: 40px 20px 20px 20px;
+            text-align: center;
+            color: white;
+            width: 100%;
+        }
+        .logo { font-size: 2.5em; font-weight: bold; }
+        .subtitle { font-size: 1em; margin-top: 5px; }
+
+        /* Tarjeta Blanca de Ingreso */
+        .login-card {
+            background-color: white;
+            padding: 30px 20px;
+            border-radius: 20px 20px 0 0; /* Bordes superiores redondeados */
+            width: 100%;
+            flex-grow: 1; /* Para que ocupe el resto del espacio */
+            box-shadow: 0 -5px 15px rgba(0, 0, 0, 0.2);
+            text-align: center;
+        }
+        
+        .card-title { font-size: 2em; color: var(--color-secondary); margin-bottom: 5px; }
+        .card-subtitle { color: #888; margin-bottom: 30px; font-size: 0.9em; }
+
+        .input-group { margin-bottom: 20px; width: 100%; }
+        .input-group input {
+            width: 100%; padding: 12px 15px; border-radius: 8px; border: none;
+            background-color: var(--color-input-bg); /* Fondo de input gris claro */
+            font-size: 1em; outline: none; 
+        }
+
+        .main-button {
+            display: block; width: 100%; background-color: var(--color-button); color: white; padding: 15px; 
+            text-align: center; border-radius: 8px; font-size: 1.1em; font-weight: bold; 
+            text-decoration: none; margin-top: 10px; cursor: pointer; border: none;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .switch-text { margin-top: 20px; font-size: 0.9em; color: var(--color-text-dark); display: flex; justify-content: center; }
+        .switch-text a { color: var(--color-secondary); text-decoration: none; font-weight: bold; margin: 0 5px; }
+    </style>
+</head>
+<body>
+    <div class="app-container">
+        <div class="header-top">
+            <div class="logo">Uber Woman</div>
+            <div class="subtitle">Entre TODAS nos cuidamos</div>
+        </div>
+
+        <div class="login-card">
+            <h1 class="card-title">INGRESA</h1>
+            <p class="card-subtitle">INGRESA PARA CONTINUAR</p>
+
+            <div class="input-group">
+                <input type="email" id="email" placeholder="Correo Electrónico" value="mujer@woman.com">
+            </div>
+            
+            <div class="input-group">
+                <input type="password" id="password" placeholder="Contraseña" value="segura123">
+            </div>
+
+            <button class="main-button" onclick="iniciarSesion()">INGRESAR</button>
+            
+            <div class="switch-text">
+                <a href="#" onclick="olvidoContrasena(event)">Olvidé mi Contraseña</a> 
+                | 
+                <a href="#">Regístrate</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function iniciarSesion() {
+            // Simulación de inicio de sesión exitoso
+            window.location.href = 'plataforma_principal.html';
+        }
+
+        function olvidoContrasena(event) {
+            event.preventDefault(); 
+            const email = document.getElementById('email').value;
+            alert(`✅ Instrucciones para restablecer tu contraseña han sido enviadas a ${email}. Por favor revisa tu bandeja de entrada.`);
+        }
+    </script>
+</body>
+</html>

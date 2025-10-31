@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <title>Uber Woman - Registro</title>
+    
+    <style>
+        /* Variables de Colores (igual que en el Login) */
+        :root {
+            --color-primary: #EE3E92; /* Rosa/Magenta (fondo superior) */
+            --color-secondary: #993399; /* Morado/Magenta Oscuro (texto, botón) */
+            --color-text-light: #FFFFFF;
+            --color-text-dark: #333333;
+            --color-bg-light: #FFFFFF; /* Fondo blanco para el formulario */
+            --color-input-border: #AAAAAA; /* Borde de input más claro */
+            --color-input-focus: #EE3E92; /* Borde al enfocar/Fecha */
+        }
+
+        /* Estilos Generales y Reseteo */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif; 
+        }
+
+        body {
+            background-color: var(--color-primary); /* Fondo del "móvil" (simula el borde azul en la imagen) */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        /* Contenedor principal (simula la pantalla del móvil) */
+        .app-container {
+            width: 100%;
+            max-width: 400px; 
+            min-height: 100vh; 
+            background-color: var(--color-bg-light); /* Fondo blanco */
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+            padding: 0 30px;
+        }
+
+        /* Estilos del Encabezado */
+        .header-registro {
+            padding-top: 60px;
+            padding-bottom: 40px;
+            text-align: center;
+        }
+
+        .title {
+            color: var(--color-secondary);
+            font-size: 2.2em;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        /* Estilos de los Grupos de Input */
+        .input-group {
+            margin-bottom: 30px;
+        }
+
+        .input-group label {
+            display: block;
+            font-size: 0.75em;
+            color: var(--color-secondary);
+            margin-bottom: 5px;
+            font-weight: bold;
+            letter-spacing: 0.5px;
+        }
+
+        /* Estilo de los campos de texto: Borde gris y sin relleno */
+        input[type="text"], 
+        input[type="email"], 
+        input[type="password"] {
+            width: 100%;
+            padding: 8px 10px;
+            border: 1px solid var(--color-input-border);
+            border-radius: 3px;
+            font-size: 1em;
+            outline: none;
+            background-color: var(--color-bg-light);
+            transition: border-color 0.3s;
+        }
+
+        input:focus {
+            border-color: var(--color-input-focus);
+        }
+
+        /* Contenedor especial para el campo de Fecha de Nacimiento */
+        .date-input-container {
+            display: flex;
+            align-items: center;
+            width: 100%;
+            padding: 8px 10px;
+            border: 1px solid var(--color-input-focus); /* Borde rosa/magenta */
+            border-radius: 3px;
+            background-color: var(--color-bg-light);
+            color: var(--color-secondary);
+        }
+
+        /* Estilizando el input de fecha */
+        .date-input-container input[type="date"] {
+            flex-grow: 1;
+            padding: 0;
+            border: none;
+            font-size: 1em;
+            color: var(--color-secondary);
+            background-color: transparent;
+            cursor: pointer;
+            /* Ocultar el icono nativo del navegador para usar el ícono simulado */
+            appearance: none;
+            -webkit-appearance: none;
+            /* Estilo para el placeholder "Seleccionar" */
+            color: #999; 
+        }
+        
+        /* Simulación del icono de calendario (Unicode) */
+        .date-input-container::after {
+            content: "\1F4C5"; /* Ícono de calendario Unicode */
+            font-size: 1.2em;
+            padding-left: 10px;
+            color: var(--color-secondary);
+        }
+        
+        /* Botones */
+        .button {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 3px;
+            font-size: 1em;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: background-color 0.3s;
+            text-transform: uppercase;
+        }
+
+        .primary-button {
+            background-color: var(--color-secondary);
+            color: var(--color-text-light);
+        }
+
+        .primary-button:hover {
+            background-color: var(--color-primary);
+        }
+    </style>
+    </head>
+<body>
+    <div class="app-container">
+        <header class="header-registro">
+            <h1 class="title">Crear una cuenta nueva</h1>
+        </header>
+
+        <form action="registro_paso2.html" method="get">
+            <div class="input-group">
+                <label for="nombre">NOMBRE</label>
+                <input type="text" id="nombre" name="nombre"> 
+            </div>
+            
+            <div class="input-group">
+                <label for="correo_reg">CORREO ELECTRÓNICO</label>
+                <input type="email" id="correo_reg" name="correo">
+            </div>
+            
+            <div class="input-group">
+                <label for="contrasena_reg">CONTRASEÑA</label>
+                <input type="password" id="contrasena_reg" name="contrasena">
+            </div>
+
+            <div class="input-group">
+                <label for="fecha_nac">FECHA DE NACIMIENTO</label>
+                <div class="date-input-container">
+                    <input type="date" id="fecha_nac" name="fecha_nac" value="Seleccionar"> 
+                </div>
+            </div>
+            
+            <button type="submit" class="button primary-button">SIGUIENTE</button>
+        </form>
+    </div>
+</body>
+</html>

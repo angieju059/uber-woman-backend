@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <title>Uber Woman - Registro Paso 2</title>
+    
+    <style>
+        /* Variables de Colores */
+        :root {
+            --color-primary: #EE3E92; 
+            --color-secondary: #993399; 
+            --color-text-light: #FFFFFF;
+            --color-bg-light: #FFFFFF; 
+            --color-input-border: #AAAAAA; 
+            --color-input-focus: #EE3E92; 
+            --color-text-dark: #333333;
+        }
+
+        /* Estilos Generales y Contenedor App */
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Arial', sans-serif; }
+        body { 
+            background-color: var(--color-primary); 
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+            min-height: 100vh; 
+        }
+        .app-container {
+            width: 100%; 
+            max-width: 400px; 
+            min-height: 100vh; 
+            background-color: var(--color-bg-light); 
+            padding: 0 30px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Título */
+        .header-registro {
+            padding-top: 60px; 
+            padding-bottom: 40px; 
+            text-align: center;
+        }
+        .title {
+            color: var(--color-secondary); 
+            font-size: 2.2em; 
+            font-weight: 700; 
+            line-height: 1.2;
+        }
+
+        /* Inputs y Select */
+        .input-group { margin-bottom: 30px; }
+        .input-group label {
+            display: block; font-size: 0.75em; color: var(--color-secondary);
+            margin-bottom: 5px; font-weight: bold; letter-spacing: 0.5px;
+        }
+        input[type="text"], input[type="password"], select {
+            width: 100%; padding: 8px 10px; border: 1px solid var(--color-input-border);
+            border-radius: 3px; font-size: 1em; outline: none; background-color: var(--color-bg-light);
+            transition: border-color 0.3s; color: var(--color-text-dark);
+            height: 35px; 
+        }
+        input:focus, select:focus { border-color: var(--color-input-focus); }
+
+        /* Estilo específico para el campo desplegable SELECT */
+        select {
+            appearance: none; -webkit-appearance: none; -moz-appearance: none;
+            background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23993399%22%20d%3D%22M287%2C79.4L146.2%2C218.6L5.4%2C79.4c-8.8-8.3-2.1-21.4%2C10.7-21.4h260.8C289.1%2C58%2C295.8%2C71.1%2C287%2C79.4z%22%2F%3E%3C%2Fsvg%3E');
+            background-repeat: no-repeat;
+            background-position: right 8px top 50%;
+            background-size: 0.6em auto;
+            padding-right: 30px; 
+        }
+
+        /* Estilo específico para el campo Teléfono con bandera de Colombia */
+        .phone-input-container {
+            display: flex; align-items: center; border: 1px solid var(--color-input-border);
+            border-radius: 3px; overflow: hidden; 
+        }
+        .flag-colombia {
+            width: 40px; height: 35px; 
+            background: linear-gradient(to bottom, #fcd116 33.3%, #003893 33.3%, #003893 66.6%, #ce1126 66.6%);
+            flex-shrink: 0; margin-right: 5px;
+        }
+        .phone-input-container input { border: none; padding-left: 0; flex-grow: 1; }
+
+        /* Botones */
+        .button {
+            width: 100%; padding: 12px; border: none; border-radius: 3px;
+            font-size: 1em; font-weight: bold; cursor: pointer; margin-top: 10px;
+            transition: background-color 0.3s; text-transform: uppercase;
+        }
+        .primary-button { background-color: var(--color-secondary); color: var(--color-text-light); }
+        .primary-button:hover { background-color: var(--color-primary); }
+    </style>
+    </head>
+<body>
+    <div class="app-container">
+        <header class="header-registro">
+            <h1 class="title">Crear una cuenta nueva</h1>
+        </header>
+
+        <form action="registro_paso3.html" method="get">
+            
+            <div class="input-group">
+                <label for="telefono">TELÉFONO</label>
+                <div class="phone-input-container">
+                    <div class="flag-colombia"></div>
+                    <input type="text" id="telefono" name="telefono"> 
+                </div>
+            </div>
+            
+            <div class="input-group">
+                <label for="pregunta">PREGUNTA DE SEGURIDAD</label>
+                <select id="pregunta" name="pregunta_seguridad">
+                    <option value="" disabled selected>Selecciona una pregunta...</option>
+                    <option value="mascota">¿Cuál es el nombre de tu primera mascota?</option>
+                    <option value="ciudad">¿En qué ciudad naciste?</option>
+                    <option value="madre">¿Cuál es el apellido de soltera de tu madre?</option>
+                    <option value="equipo">¿Cuál es tu equipo deportivo favorito?</option>
+                </select>
+            </div>
+            
+            <div class="input-group">
+                <label for="respuesta_seg">RESPUESTA</label>
+                <input type="text" id="respuesta_seg" name="respuesta_seguridad">
+            </div>
+            
+            <div class="input-group">
+                <label for="repetir_contra">REPETIR CONTRASEÑA</label>
+                <input type="password" id="repetir_contra" name="repetir_contra">
+            </div>
+            
+            <button type="submit" class="button primary-button">INGRESAR</button>
+        </form>
+    </div>
+</body>
+</html>
