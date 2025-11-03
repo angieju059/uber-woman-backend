@@ -102,22 +102,25 @@
         </a>
     </div>
 
+    <!-- LÓGICA JAVASCRIPT CORREGIDA -->
     <script>
         function validarRespuesta() {
-            // 1. Obtener la respuesta del campo de texto
+            // 1. Obtener la respuesta del campo de texto y convertirla a minúsculas
             const respuestaIngresada = document.getElementById('respuestaInput').value.trim().toLowerCase();
             
-            // 2. Respuesta de prueba para la simulación
+            // 2. Respuesta correcta de prueba: ¡"firulais"!
             const respuestaCorrecta = "firulais"; 
 
             // 3. Simular la validación
             if (respuestaIngresada === respuestaCorrecta) {
-                // SIMULACIÓN DE ÉXITO: Mostrar alerta y redirigir
-                alert("¡Respuesta Correcta! Se han enviado instrucciones de recuperación al correo (simulación).");
-                window.location.href = 'ingreso_registro.html'; // Redirigir al Login
+                // Muestra el mensaje de éxito del correo y procede.
+                alert("✅ ¡Respuesta Correcta! Se han enviado instrucciones de recuperación al correo (simulación).");
+                
+                // REDIRIGE AL SIGUIENTE PASO: CREAR NUEVA CONTRASEÑA
+                window.location.href = 'recuperacion_contrasena.html'; 
             } else {
-                // SIMULACIÓN DE ERROR
-                alert("Respuesta incorrecta. Inténtalo de nuevo. Pista: La respuesta es 'Firulais'");
+                // Mensaje de error
+                alert("❌ Respuesta incorrecta. Inténtalo de nuevo. Pista: La respuesta es 'Firulais'");
             }
         }
     </script>

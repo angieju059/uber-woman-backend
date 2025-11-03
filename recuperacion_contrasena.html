@@ -2,241 +2,130 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
-    <title>Uber Woman - Recuperación Segura</title>
-    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Establecer Nueva Contraseña</title>
+    <!-- Estilos internos para asegurar que se carguen -->
     <style>
-        /* Variables de Colores (igual que en los otros archivos) */
         :root {
-            --color-primary: #EE3E92; /* Rosa/Magenta */
-            --color-secondary: #993399; /* Morado/Magenta Oscuro */
-            --color-text-light: #FFFFFF;
+            --color-primary: #EE3E92; /* Fucsia */
+            --color-secondary: #993399; /* Morado */
             --color-text-dark: #333333;
-            --color-bg-light: #FFFFFF; 
-            --color-input-border: #AAAAAA; 
-            --color-input-focus: #EE3E92; 
-            --color-success: #4CAF50;
-            --color-error: #F44336;
         }
 
-        /* Estilos Generales y Contenedor App */
-        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Arial', sans-serif; }
-        body { 
-            background-color: var(--color-primary); 
-            display: flex; 
-            justify-content: center; 
-            align-items: center; 
-            min-height: 100vh; 
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Arial', 'Segoe UI', sans-serif; }
+        body {
+            background-color: var(--color-primary);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
         }
-        .app-container {
-            width: 100%; 
-            max-width: 400px; 
-            min-height: 100vh; 
-            background-color: var(--color-bg-light); 
-            padding: 0 30px;
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
-        }
-
-        /* Título */
-        .header-registro {
-            padding-top: 60px; 
-            padding-bottom: 40px; 
+        .form-container {
+            width: 100%;
+            max-width: 400px;
+            background-color: white;
+            padding: 40px 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
             text-align: center;
         }
-        .title {
-            color: var(--color-secondary); 
-            font-size: 2.2em; 
-            font-weight: 700; 
-            line-height: 1.2;
-            margin-bottom: 20px;
+        h1 {
+            color: var(--color-secondary);
+            font-size: 2.2em;
+            margin-bottom: 10px;
         }
-        .subtitle {
+        p {
+            color: var(--color-text-dark);
+            margin-bottom: 25px;
             font-size: 0.9em;
-            color: #666;
-            margin-bottom: 30px;
         }
-        
-        /* Inputs y Botones */
-        .input-group { margin-bottom: 30px; }
-        .input-group label {
-            display: block; font-size: 0.75em; color: var(--color-secondary);
-            margin-bottom: 5px; font-weight: bold; letter-spacing: 0.5px;
-        }
-        input[type="text"], input[type="email"], input[type="password"] {
-            width: 100%; padding: 8px 10px; border: 1px solid var(--color-input-border);
-            border-radius: 3px; font-size: 1em; outline: none; background-color: var(--color-bg-light);
-            transition: border-color 0.3s; color: var(--color-text-dark);
-            height: 35px;
-        }
-        input:focus { border-color: var(--color-input-focus); }
-        
-        /* Campo para mostrar la pregunta (estilizado como input deshabilitado) */
-        .question-display {
-            background-color: #F0F0F0;
-            color: #666;
-            font-style: italic;
-        }
-
-        .button {
-            width: 100%; padding: 12px; border: none; border-radius: 3px;
-            font-size: 1em; font-weight: bold; cursor: pointer; margin-top: 10px;
-            transition: background-color 0.3s; text-transform: uppercase;
-        }
-        .primary-button { background-color: var(--color-secondary); color: var(--color-text-light); }
-        .primary-button:hover { background-color: var(--color-primary); }
-
-        .link-back { 
-            text-align: center; margin-top: 30px;
-            color: var(--color-secondary); text-decoration: none; font-weight: bold;
+        label {
             display: block;
-        }
-
-        /* Mensajes de estado */
-        .message {
-            padding: 10px;
-            margin-bottom: 20px;
-            border-radius: 3px;
+            text-align: left;
+            margin-bottom: 5px;
             font-weight: bold;
-            text-align: center;
-            display: none;
+            color: var(--color-secondary);
+            font-size: 0.9em;
         }
-        .success { background-color: #D4EDDA; color: var(--color-success); border: 1px solid var(--color-success); }
-        .error { background-color: #F8D7DA; color: var(--color-error); border: 1px solid var(--color-error); }
-
-        /* Contenedores para ocultar/mostrar secciones */
-        #verification-section, #password-reset-section {
-            display: none;
+        input[type="password"] {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 25px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-size: 1em;
+            outline: none;
         }
-
+        button {
+            width: 100%;
+            padding: 15px;
+            background-color: var(--color-secondary);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.1em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        button:hover {
+            background-color: #792b79;
+        }
+        .back-link {
+            display: block;
+            margin-top: 20px;
+            color: var(--color-primary);
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 0.9em;
+        }
     </style>
-    </head>
+</head>
 <body>
-    <div class="app-container">
-        <header class="header-registro">
-            <h1 class="title">Recuperación Segura</h1>
-            <p class="subtitle">Paso 1: Confirma tu identidad respondiendo tu pregunta de seguridad.</p>
-        </header>
+    <div class="form-container">
+        <h1>Nueva Contraseña</h1>
+        <p>Paso 2: Ingresa tu nueva contraseña segura.</p>
 
-        <form id="email-form">
-            <div class="input-group">
-                <label for="correo_recuperacion">CORREO ELECTRÓNICO</label>
-                <input type="email" id="correo_recuperacion" name="correo_recuperacion">
-            </div>
-            
-            <button type="button" class="button primary-button" onclick="mostrarVerificacion()">CONTINUAR</button>
-        </form>
-        
-        <div id="verification-section">
-            
-            <div class="input-group">
-                <label for="pregunta_seguridad">PREGUNTA DE SEGURIDAD</label>
-                <input type="text" id="pregunta_seguridad" class="question-display" value="¿Cuál es el nombre de tu primera mascota?" disabled>
-            </div>
-            
-            <div class="input-group">
-                <label for="respuesta_seguridad">RESPUESTA</label>
-                <input type="text" id="respuesta_seguridad" name="respuesta_seguridad">
-            </div>
-            
-            <div id="verification-message" class="message"></div>
-            
-            <button type="button" class="button primary-button" onclick="validarRespuesta()">VALIDAR RESPUESTA</button>
-        </div>
-        
-        <div id="password-reset-section">
-            <p class="subtitle" style="text-align: left;">Paso 2: Responde correctamente. Ahora crea tu nueva contraseña.</p>
+        <label for="nuevaContrasena">NUEVA CONTRASEÑA</label>
+        <input type="password" id="nuevaContrasena">
 
-            <div class="input-group">
-                <label for="nueva_contrasena">NUEVA CONTRASEÑA</label>
-                <input type="password" id="nueva_contrasena" name="nueva_contrasena">
-            </div>
+        <label for="confirmarContrasena">CONFIRMAR CONTRASEÑA</label>
+        <input type="password" id="confirmarContrasena">
 
-            <div class="input-group">
-                <label for="confirma_contrasena">CONFIRMA NUEVA CONTRASEÑA</label>
-                <input type="password" id="confirma_contrasena" name="confirma_contrasena">
-            </div>
-            
-            <div id="reset-message" class="message"></div>
+        <!-- Botón que llama a la función JS -->
+        <button onclick="cambiarContrasena()">
+            CAMBIAR CONTRASEÑA
+        </button>
 
-            <button type="button" class="button primary-button" onclick="restablecerContrasena()">RESTABLECER</button>
-        </div>
-        
-        <a href="index.html" class="link-back">Volver al Inicio de Sesión</a>
-
+        <a href="ingreso_registro.html" class="back-link">
+            Volver al Inicio de Sesión
+        </a>
     </div>
-    
+
+    <!-- LÓGICA JAVASCRIPT DE SIMULACIÓN -->
     <script>
-        // Respuesta de prueba correcta (simulando la respuesta registrada por el usuario)
-        const RESPUESTA_CORRECTA = "mascota123";
+        function cambiarContrasena() {
+            const nueva = document.getElementById('nuevaContrasena').value;
+            const confirmar = document.getElementById('confirmarContrasena').value;
 
-        function mostrarVerificacion() {
-            const email = document.getElementById('correo_recuperacion').value;
-            if (email === "") {
-                alert("Por favor, ingresa tu correo electrónico para iniciar la verificación.");
+            if (nueva === "" || confirmar === "") {
+                // Usamos alert para simular el mensaje de error
+                alert("Por favor, llena ambos campos.");
                 return;
             }
-            // Oculta el formulario de correo y muestra la sección de verificación
-            document.getElementById('email-form').style.display = 'none';
-            document.getElementById('verification-section').style.display = 'block';
-        }
 
-        function validarRespuesta() {
-            const respuestaUsuario = document.getElementById('respuesta_seguridad').value;
-            const msgElement = document.getElementById('verification-message');
-            
-            msgElement.style.display = 'block';
-            
-            if (respuestaUsuario.toLowerCase().trim() === RESPUESTA_CORRECTA) {
-                // RESPUESTA EXITOSA
-                msgElement.className = 'message success';
-                msgElement.textContent = '✅ Respuesta Correcta. Procede a establecer tu nueva contraseña.';
-                
-                // Oculta la sección de verificación y muestra la sección de restablecimiento
-                setTimeout(() => {
-                    document.getElementById('verification-section').style.display = 'none';
-                    document.getElementById('password-reset-section').style.display = 'block';
-                }, 1500);
-
-            } else {
-                // RESPUESTA ERRÓNEA
-                msgElement.className = 'message error';
-                msgElement.textContent = '❌ Respuesta Errónea. Vuelve a intentarlo o vuelve al Login.';
-            }
-        }
-function restablecerContrasena() {
-            const nuevaContra = document.getElementById('nueva_contrasena').value;
-            const confirmaContra = document.getElementById('confirma_contrasena').value;
-            const msgElement = document.getElementById('reset-message');
-            
-            msgElement.style.display = 'block';
-
-            if (nuevaContra === "" || confirmaContra === "") {
-                msgElement.className = 'message error';
-                msgElement.textContent = '⚠️ Debes ingresar y confirmar la nueva contraseña.';
+            if (nueva !== confirmar) {
+                // Usamos alert para simular el mensaje de error
+                alert("Las contraseñas no coinciden.");
                 return;
             }
             
-            if (nuevaContra !== confirmaContra) {
-                msgElement.className = 'message error';
-                msgElement.textContent = '❌ Las contraseñas no coinciden. Inténtalo de nuevo.';
-            } else if (nuevaContra.length < 6) {
-                msgElement.className = 'message error';
-                msgElement.textContent = '⚠️ La contraseña debe tener al menos 6 caracteres.';
-            } else {
-                // RESTABLECIMIENTO EXITOSO
-                msgElement.className = 'message success';
-                msgElement.textContent = '✅ Contraseña restablecida con éxito. Redirigiendo al inicio de sesión...';
-                
-                // *** LÍNEA CLAVE AÑADIDA: GUARDAR LA NUEVA CONTRASEÑA ***
-                localStorage.setItem('contrasenaUsuario', nuevaContra);
-                
-                // Redirige al login después de un breve retraso
-                setTimeout(() => {
-                    window.location.href = "index.html";
-                }, 2000);
-            
-            }
+            // SIMULACIÓN DE ÉXITO: Muestra el mensaje y devuelve al login.
+            alert("✅ ¡Contraseña cambiada con éxito! Ahora puedes ingresar con tu nueva clave.");
+            window.location.href = 'ingreso_registro.html'; // Redirigir al Login
         }
     </script>
-    </body>
+</body>
 </html>
