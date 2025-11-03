@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recuperación Segura</title>
+    <style>
+        :root {
+            --color-primary: #EE3E92; /* Fucsia */
+            --color-secondary: #993399; /* Morado */
+            --color-text-dark: #333333;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Arial', 'Segoe UI', sans-serif; }
+        body {
+            background-color: var(--color-primary);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .form-container {
+            width: 100%;
+            max-width: 400px;
+            background-color: white;
+            padding: 40px 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            text-align: center;
+        }
+        h1 {
+            color: var(--color-secondary);
+            font-size: 2.2em;
+            margin-bottom: 10px;
+        }
+        p {
+            color: var(--color-text-dark);
+            margin-bottom: 25px;
+            font-size: 0.9em;
+        }
+        label {
+            display: block;
+            text-align: left;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: var(--color-secondary);
+            font-size: 0.9em;
+        }
+        input[type="text"] {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 25px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-size: 1em;
+            outline: none;
+        }
+        button {
+            width: 100%;
+            padding: 15px;
+            background-color: var(--color-secondary);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.1em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        button:hover {
+            background-color: #792b79;
+        }
+        .back-link {
+            display: block;
+            margin-top: 20px;
+            color: var(--color-primary);
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <h1>Recuperación Segura</h1>
+        <p>Paso 1: Confirma tu identidad respondiendo tu pregunta de seguridad.</p>
+
+        <label for="pregunta">PREGUNTA DE SEGURIDAD</label>
+        <input type="text" id="pregunta" value="¿Cuál es el nombre de tu primera mascota?" readonly style="font-style: italic; background-color: #f7f7f7;">
+
+        <label for="respuestaInput">RESPUESTA</label>
+        <input type="text" id="respuestaInput" placeholder="Escribe tu respuesta aquí...">
+
+        <button onclick="validarRespuesta()">
+            VALIDAR RESPUESTA
+        </button>
+
+        <a href="ingreso_registro.html" class="back-link">
+            Volver al Inicio de Sesión
+        </a>
+    </div>
+
+    <script>
+        function validarRespuesta() {
+            // 1. Obtener la respuesta del campo de texto
+            const respuestaIngresada = document.getElementById('respuestaInput').value.trim().toLowerCase();
+            
+            // 2. Respuesta de prueba para la simulación
+            const respuestaCorrecta = "firulais"; 
+
+            // 3. Simular la validación
+            if (respuestaIngresada === respuestaCorrecta) {
+                // SIMULACIÓN DE ÉXITO: Mostrar alerta y redirigir
+                alert("¡Respuesta Correcta! Se han enviado instrucciones de recuperación al correo (simulación).");
+                window.location.href = 'ingreso_registro.html'; // Redirigir al Login
+            } else {
+                // SIMULACIÓN DE ERROR
+                alert("Respuesta incorrecta. Inténtalo de nuevo. Pista: La respuesta es 'Firulais'");
+            }
+        }
+    </script>
+</body>
+</html>
